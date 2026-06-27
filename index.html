@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farzad Behzadi · Mortgage Consultant · BC &amp; Alberta</title>
+<meta name="description" content="Farzad Behzadi helps buyers and refinancers across BC &amp; Alberta get approved based on their real needs, comparing 50+ lenders. Bilingual in English and Persian.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: #07090F;
+    color: #EAEEF6;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: rgba(77,163,255,.3); color: #fff; }
+
+  @keyframes fb-breathe {
+    0%, 100% { transform: scale(1) translate(0,0); opacity: .42; }
+    50% { transform: scale(1.28) translate(3%,-4%); opacity: .72; }
+  }
+
+  @keyframes fb-floaty {
+    0%, 100% { transform: translateY(0) rotate(-1.2deg); }
+    50% { transform: translateY(-14px) rotate(1.4deg); }
+  }
+
+  @keyframes fb-pulse {
+    0% { transform: scale(.9); box-shadow: 0 0 0 0 rgba(77,163,255,.55); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 7px rgba(77,163,255,0); }
+    100% { transform: scale(.9); box-shadow: 0 0 0 0 rgba(77,163,255,0); }
+  }
+
+  @keyframes fb-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes fb-typing {
+    0%, 60%, 100% { opacity: .25; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-3px); }
+  }
+
+  /* Nav hover */
+  .fb-navlink { color: #A7B2C6; text-decoration: none; font-size: 14.5px; font-weight: 500; letter-spacing: .01em; transition: color .2s ease; }
+  .fb-navlink:hover { color: #EAEEF6; }
+
+  /* CTA button */
+  .fb-cta-nav {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #4DA3FF; color: #04101F; font-weight: 600; font-size: 14.5px;
+    padding: 10px 20px; border-radius: 8px; text-decoration: none;
+    box-shadow: 0 0 0 1px rgba(77,163,255,.4), 0 6px 22px -6px rgba(77,163,255,.55);
+    transition: transform .3s cubic-bezier(0.22,1,0.36,1), box-shadow .3s cubic-bezier(0.22,1,0.36,1);
+  }
+  .fb-cta-nav:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 1px rgba(77,163,255,.7), 0 10px 34px -6px rgba(77,163,255,.8);
+  }
+
+  /* Hero CTA */
+  .fb-cta-primary {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: #4DA3FF; color: #04101F; font-weight: 600; font-size: 16px;
+    padding: 15px 28px; border-radius: 10px; text-decoration: none;
+    box-shadow: 0 0 0 1px rgba(77,163,255,.4), 0 10px 34px -8px rgba(77,163,255,.6);
+    transition: transform .3s cubic-bezier(0.22,1,0.36,1), box-shadow .3s cubic-bezier(0.22,1,0.36,1);
+  }
+  .fb-cta-primary:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 1px rgba(77,163,255,.75), 0 14px 44px -8px rgba(77,163,255,.85);
+  }
+
+  .fb-cta-secondary {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: rgba(255,255,255,.04); color: #EAEEF6; font-weight: 600; font-size: 16px;
+    padding: 15px 26px; border-radius: 10px; text-decoration: none;
+    border: 1px solid rgba(150,180,225,.16);
+    transition: border-color .3s ease, background .3s ease;
+  }
+  .fb-cta-secondary:hover {
+    border-color: rgba(77,163,255,.5);
+    background: rgba(77,163,255,.07);
+  }
+
+  /* Cards */
+  .fb-card {
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(120,170,255,.1);
+    border-radius: 16px; padding: 28px;
+    transition: transform .3s cubic-bezier(0.22,1,0.36,1), border-color .3s ease, box-shadow .3s ease;
+  }
+  .fb-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(77,163,255,.45);
+    box-shadow: 0 24px 50px -24px rgba(0,20,60,.9), 0 0 40px -10px rgba(77,163,255,.25);
+  }
+
+  .fb-process-card {
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(120,170,255,.1);
+    border-radius: 16px; padding: 32px 28px;
+    transition: transform .3s cubic-bezier(0.22,1,0.36,1), border-color .3s ease, box-shadow .3s ease;
+  }
+  .fb-process-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(77,163,255,.4);
+    box-shadow: 0 24px 50px -24px rgba(0,20,60,.9), 0 0 40px -10px rgba(77,163,255,.2);
+  }
+
+  .fb-result-card {
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(120,170,255,.1);
+    border-top: 3px solid #4DA3FF;
+    border-radius: 14px; padding: 30px 28px;
+    transition: transform .3s cubic-bezier(0.22,1,0.36,1), border-color .3s ease, box-shadow .3s ease;
+  }
+  .fb-result-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 50px -24px rgba(0,20,60,.9), 0 0 40px -10px rgba(77,163,255,.25);
+  }
+
+  /* Footer links */
+  .fb-footer-link { color: #9AA6BC; text-decoration: none; font-size: 14px; transition: color .2s ease; }
+  .fb-footer-link:hover { color: #EAEEF6; }
+
+  /* Form inputs */
+  .fb-input {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(150,180,225,.16);
+    border-radius: 9px; padding: 13px 14px;
+    color: #EAEEF6; font-family: inherit; font-size: 15px;
+    outline: none; width: 100%;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .fb-input:focus {
+    border-color: #4DA3FF;
+    box-shadow: 0 0 0 3px rgba(77,163,255,.22);
+  }
+  .fb-input::placeholder { color: #4A566A; }
+
+  /* Submit button */
+  .fb-submit {
+    margin-top: 4px; width: 100%;
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    background: #4DA3FF; color: #04101F;
+    font-family: inherit; font-weight: 600; font-size: 16px;
+    padding: 15px 24px; border: none; border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 0 1px rgba(77,163,255,.4), 0 10px 34px -8px rgba(77,163,255,.6);
+    transition: transform .3s cubic-bezier(0.22,1,0.36,1), box-shadow .3s cubic-bezier(0.22,1,0.36,1);
+  }
+  .fb-submit:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 1px rgba(77,163,255,.75), 0 14px 44px -8px rgba(77,163,255,.85);
+  }
+  .fb-submit.sent {
+    background: rgba(77,163,255,.16);
+    color: #9FC4F2;
+    box-shadow: 0 0 0 1px rgba(77,163,255,.4);
+    transform: none;
+    cursor: default;
+  }
+
+  /* Reveal animation base */
+  .fb-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s cubic-bezier(0.22,1,0.36,1), transform .6s cubic-bezier(0.22,1,0.36,1);
+    will-change: opacity, transform;
+  }
+  .fb-reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 820px) {
+    .fb-navlinks { display: none !important; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .fb-reveal { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div style="position:relative; min-height:100vh; background:#07090F; color:#EAEEF6; overflow-x:hidden;">
+
+  <!-- Ambient background blobs -->
+  <div style="position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;">
+    <div style="position:absolute; top:-12%; left:-8%; width:720px; height:720px; border-radius:50%; background:radial-gradient(circle, rgba(77,163,255,.5) 0%, rgba(77,163,255,0) 62%); filter:blur(36px); animation:fb-breathe 11s ease-in-out infinite;"></div>
+    <div style="position:absolute; top:34%; right:-14%; width:640px; height:640px; border-radius:50%; background:radial-gradient(circle, rgba(40,90,170,.42) 0%, rgba(40,90,170,0) 64%); filter:blur(40px); animation:fb-breathe 13.5s ease-in-out infinite; animation-delay:-3s;"></div>
+    <div style="position:absolute; bottom:-16%; left:22%; width:680px; height:680px; border-radius:50%; background:radial-gradient(circle, rgba(77,163,255,.28) 0%, rgba(77,163,255,0) 60%); filter:blur(44px); animation:fb-breathe 9.5s ease-in-out infinite; animation-delay:-6s;"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:50; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); background:rgba(7,9,15,.62); border-bottom:1px solid rgba(120,170,255,.08);">
+    <div style="max-width:1200px; margin:0 auto; padding:14px clamp(1.25rem,5vw,2rem); display:flex; align-items:center; justify-content:space-between; gap:24px;">
+      <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+        <img src="project/assets/logo-horizontal-white.png" alt="Farzad Behzadi" style="height:50px; width:auto; display:block;">
+      </a>
+      <div class="fb-navlinks" style="display:flex; align-items:center; gap:34px;">
+        <a href="#services" class="fb-navlink">What I do</a>
+        <a href="#process" class="fb-navlink">How it works</a>
+        <a href="#results" class="fb-navlink">Results</a>
+        <a href="#about" class="fb-navlink">About</a>
+      </div>
+      <a href="#contact" class="fb-cta-nav">Book a consultation</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <a id="top"></a>
+  <section style="position:relative; z-index:1; padding:148px clamp(1.25rem,5vw,2rem) clamp(4rem,8vw,7rem); max-width:1200px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr)); gap:clamp(40px,6vw,72px); align-items:center;">
+
+      <div>
+        <div class="fb-reveal" style="display:inline-flex; align-items:center; gap:10px; padding:7px 14px; border-radius:100px; border:1px solid rgba(77,163,255,.22); background:rgba(77,163,255,.06); margin-bottom:26px;">
+          <span style="width:8px; height:8px; border-radius:50%; background:#4DA3FF; animation:fb-pulse 2.2s ease-in-out infinite; display:inline-block;"></span>
+          <span style="font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#9FC4F2;">Personal Mortgage Corporation · BC &amp; Alberta</span>
+        </div>
+        <h1 class="fb-reveal" style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.9rem,6vw,4.6rem); line-height:1.02; letter-spacing:-.01em; margin:0 0 24px; color:#F2F5FB;">Get approved on<br><span style="font-style:italic; color:#fff;">your</span> terms.</h1>
+        <p class="fb-reveal" style="font-size:clamp(1.05rem,1.4vw,1.22rem); line-height:1.6; color:#A7B2C6; max-width:30em; margin:0 0 36px;">Farzad Behzadi helps buyers and refinancers across BC &amp; Alberta get approved based on their real needs, comparing 50+ lenders, then staying responsive from first call to closing. In English and Persian.</p>
+        <div class="fb-reveal" style="display:flex; flex-wrap:wrap; gap:14px;">
+          <a href="#contact" class="fb-cta-primary">Book a consultation<i data-lucide="arrow-right" style="width:18px; height:18px;"></i></a>
+          <a href="#process" class="fb-cta-secondary">How it works</a>
+        </div>
+        <div class="fb-reveal" style="display:flex; align-items:center; gap:22px; margin-top:38px; flex-wrap:wrap;">
+          <div style="display:flex; align-items:center; gap:9px; color:#8492A8; font-size:13.5px;"><i data-lucide="shield-check" style="width:16px; height:16px; color:#4DA3FF;"></i> Registered under RTC Mortgage Brokerage</div>
+          <div style="display:flex; align-items:center; gap:9px; color:#8492A8; font-size:13.5px;"><i data-lucide="languages" style="width:16px; height:16px; color:#4DA3FF;"></i> English &amp; Persian</div>
+        </div>
+      </div>
+
+      <!-- Chat card -->
+      <div class="fb-reveal" style="position:relative;">
+        <div style="position:relative; z-index:2; background:linear-gradient(180deg, rgba(20,28,44,.85), rgba(11,16,26,.92)); border:1px solid rgba(120,170,255,.14); border-radius:22px; padding:18px 18px 20px; box-shadow:0 30px 80px -30px rgba(0,20,60,.9), 0 0 0 1px rgba(77,163,255,.04); backdrop-filter:blur(8px);">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:6px 6px 14px; border-bottom:1px solid rgba(120,170,255,.1);">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#1E5491,#003364); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-weight:700; color:#fff; font-size:15px;">FB</div>
+              <div>
+                <div style="font-size:13.5px; font-weight:600; color:#EAEEF6;">Farzad Behzadi</div>
+                <div style="font-size:11px; color:#7E8CA2;">Senior Mortgage Consultant</div>
+              </div>
+            </div>
+            <div style="display:inline-flex; align-items:center; gap:6px; padding:4px 9px; border-radius:100px; background:rgba(77,163,255,.1); border:1px solid rgba(77,163,255,.25);">
+              <span style="width:6px; height:6px; border-radius:50%; background:#4DA3FF; animation:fb-pulse 2s ease-in-out infinite; display:inline-block;"></span>
+              <span style="font-size:10px; font-weight:700; letter-spacing:.1em; color:#9FC4F2;">LIVE</span>
+            </div>
+          </div>
+          <div id="fb-chat" style="display:flex; flex-direction:column; gap:11px; padding:16px 4px 4px; min-height:300px;">
+            <div data-chat="0" style="opacity:0; align-self:flex-start; max-width:80%; background:rgba(255,255,255,.05); border:1px solid rgba(150,180,225,.12); color:#D4DCEA; padding:11px 14px; border-radius:4px 16px 16px 16px; font-size:13.5px; line-height:1.45; transform:translateY(10px); transition:opacity .45s cubic-bezier(0.22,1,0.36,1), transform .45s cubic-bezier(0.22,1,0.36,1);">Hi Farzad, we found a place in Surrey. Can we still get approved?</div>
+            <div data-chat="1" style="opacity:0; align-self:flex-end; max-width:80%; background:rgba(77,163,255,.14); border:1px solid rgba(77,163,255,.3); color:#EAF2FF; padding:11px 14px; border-radius:16px 4px 16px 16px; font-size:13.5px; line-height:1.45; transform:translateY(10px); transition:opacity .45s cubic-bezier(0.22,1,0.36,1), transform .45s cubic-bezier(0.22,1,0.36,1);">Congrats! Send me your details and I'll compare 50+ lenders to find the right fit.</div>
+            <div data-chat="2" style="opacity:0; align-self:flex-start; max-width:80%; background:rgba(255,255,255,.05); border:1px solid rgba(150,180,225,.12); color:#D4DCEA; padding:11px 14px; border-radius:4px 16px 16px 16px; font-size:13.5px; line-height:1.45; transform:translateY(10px); transition:opacity .45s cubic-bezier(0.22,1,0.36,1), transform .45s cubic-bezier(0.22,1,0.36,1);">Just sent. How soon can we talk?</div>
+            <div data-chat="3" style="opacity:0; align-self:flex-end; max-width:80%; background:rgba(77,163,255,.14); border:1px solid rgba(77,163,255,.3); color:#EAF2FF; padding:11px 14px; border-radius:16px 4px 16px 16px; font-size:13.5px; line-height:1.45; transform:translateY(10px); transition:opacity .45s cubic-bezier(0.22,1,0.36,1), transform .45s cubic-bezier(0.22,1,0.36,1);">I have a slot today at 4:00 PM. Booking it for you now.</div>
+            <div data-chat="4" style="opacity:0; align-self:stretch; display:flex; align-items:center; gap:11px; background:rgba(77,163,255,.08); border:1px solid rgba(77,163,255,.28); padding:13px 15px; border-radius:12px; margin-top:2px; transform:translateY(10px); transition:opacity .45s cubic-bezier(0.22,1,0.36,1), transform .45s cubic-bezier(0.22,1,0.36,1);">
+              <div style="width:34px; height:34px; border-radius:9px; background:rgba(77,163,255,.16); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><i data-lucide="calendar-check" style="width:18px; height:18px; color:#4DA3FF;"></i></div>
+              <div style="flex:1;">
+                <div style="font-size:13px; font-weight:600; color:#EAF2FF;">Consultation booked</div>
+                <div style="font-size:11.5px; color:#8FA8C9;">Today · 4:00 PM · Video call</div>
+              </div>
+              <i data-lucide="check-circle-2" style="width:18px; height:18px; color:#4DA3FF;"></i>
+            </div>
+            <div id="fb-typing" style="opacity:0; align-self:flex-start; display:flex; gap:4px; padding:13px 15px; background:rgba(255,255,255,.05); border-radius:16px; width:max-content; transition:opacity .3s ease;">
+              <span style="width:6px; height:6px; border-radius:50%; background:#6E8099; animation:fb-typing 1.2s ease-in-out infinite; display:inline-block;"></span>
+              <span style="width:6px; height:6px; border-radius:50%; background:#6E8099; animation:fb-typing 1.2s ease-in-out infinite; animation-delay:.18s; display:inline-block;"></span>
+              <span style="width:6px; height:6px; border-radius:50%; background:#6E8099; animation:fb-typing 1.2s ease-in-out infinite; animation-delay:.36s; display:inline-block;"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating badges -->
+        <div style="position:absolute; z-index:3; top:-26px; right:-18px; display:flex; align-items:center; gap:10px; background:rgba(13,19,30,.9); border:1px solid rgba(77,163,255,.22); border-radius:13px; padding:11px 14px; box-shadow:0 16px 40px -12px rgba(0,20,60,.8), 0 0 24px -6px rgba(77,163,255,.3); backdrop-filter:blur(10px); animation:fb-floaty 6s ease-in-out infinite;">
+          <div style="width:30px; height:30px; border-radius:8px; background:rgba(77,163,255,.16); display:flex; align-items:center; justify-content:center;"><i data-lucide="user-plus" style="width:16px; height:16px; color:#4DA3FF;"></i></div>
+          <div>
+            <div style="font-size:12.5px; font-weight:600; color:#EAEEF6;">New lead captured</div>
+            <div style="font-size:10.5px; color:#7E8CA2;">moments ago</div>
+          </div>
+        </div>
+
+        <div style="position:absolute; z-index:3; bottom:46px; left:-30px; display:flex; align-items:center; gap:10px; background:rgba(13,19,30,.9); border:1px solid rgba(77,163,255,.22); border-radius:13px; padding:11px 14px; box-shadow:0 16px 40px -12px rgba(0,20,60,.8), 0 0 24px -6px rgba(77,163,255,.3); backdrop-filter:blur(10px); animation:fb-floaty 7.4s ease-in-out infinite; animation-delay:-2s;">
+          <div style="width:30px; height:30px; border-radius:8px; background:rgba(77,163,255,.16); display:flex; align-items:center; justify-content:center;"><i data-lucide="message-circle-reply" style="width:16px; height:16px; color:#4DA3FF;"></i></div>
+          <div>
+            <div style="font-size:12.5px; font-weight:600; color:#EAEEF6;">Replied in 3s</div>
+            <div style="font-size:10.5px; color:#7E8CA2;">average response</div>
+          </div>
+        </div>
+
+        <div style="position:absolute; z-index:3; bottom:-22px; right:24px; display:inline-flex; align-items:center; gap:7px; background:rgba(13,19,30,.9); border:1px solid rgba(77,163,255,.3); border-radius:100px; padding:8px 14px; box-shadow:0 12px 30px -10px rgba(0,20,60,.8), 0 0 22px -6px rgba(77,163,255,.4); backdrop-filter:blur(10px); animation:fb-floaty 6.8s ease-in-out infinite; animation-delay:-4s;">
+          <span style="width:7px; height:7px; border-radius:50%; background:#4DA3FF; animation:fb-pulse 1.8s ease-in-out infinite; display:inline-block;"></span>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.1em; color:#9FC4F2;">LIVE · BOOKED</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <section style="position:relative; z-index:1; border-top:1px solid rgba(120,170,255,.07); border-bottom:1px solid rgba(120,170,255,.07); background:rgba(255,255,255,.012);">
+    <div style="max-width:1200px; margin:0 auto; padding:clamp(2.4rem,4vw,3.4rem) clamp(1.25rem,5vw,2rem); display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:28px;">
+      <div class="fb-reveal" style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.4rem,4vw,3.2rem); color:#4DA3FF; line-height:1;"><span data-count="8" data-suffix="+">8+</span></div>
+        <div style="margin-top:6px; font-size:13.5px; color:#9AA6BC; letter-spacing:.02em;">Years in the industry</div>
+      </div>
+      <div class="fb-reveal" style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.4rem,4vw,3.2rem); color:#4DA3FF; line-height:1;"><span data-count="50" data-suffix="+">50+</span></div>
+        <div style="margin-top:6px; font-size:13.5px; color:#9AA6BC; letter-spacing:.02em;">Lenders compared</div>
+      </div>
+      <div class="fb-reveal" style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.4rem,4vw,3.2rem); color:#4DA3FF; line-height:1;"><span data-count="200" data-suffix="+">200+</span></div>
+        <div style="margin-top:6px; font-size:13.5px; color:#9AA6BC; letter-spacing:.02em;">Happy families</div>
+      </div>
+      <div class="fb-reveal" style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.4rem,4vw,3.2rem); color:#4DA3FF; line-height:1;">2</div>
+        <div style="margin-top:6px; font-size:13.5px; color:#9AA6BC; letter-spacing:.02em;">Provinces · BC &amp; Alberta</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lender marquee -->
+  <section style="position:relative; z-index:1; padding:clamp(2.6rem,4vw,3.6rem) 0; overflow:hidden;">
+    <p class="fb-reveal" style="text-align:center; font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#6E7C92; margin:0 0 26px;">Access to 50+ lenders · banks, monolines &amp; credit unions</p>
+    <div style="position:relative; -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);">
+      <div style="display:flex; gap:64px; width:max-content; animation:fb-marquee 32s linear infinite; align-items:center;">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap; letter-spacing:.01em;">TD</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">Scotiabank</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">BMO</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">Home Trust</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">Equitable Bank</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">Manulife</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">RFA</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">MCAP</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">First National</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">CMLS</span>
+        <!-- duplicate for seamless loop -->
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap; letter-spacing:.01em;">TD</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">Scotiabank</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">BMO</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">Home Trust</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">Equitable Bank</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">Manulife</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">RFA</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">MCAP</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">First National</span>
+        <span style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:#8896AE; white-space:nowrap;">CMLS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" style="position:relative; z-index:1; padding:clamp(4rem,7vw,6.5rem) clamp(1.25rem,5vw,2rem); max-width:1200px; margin:0 auto;">
+    <div class="fb-reveal" style="max-width:640px; margin-bottom:52px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#4DA3FF; margin-bottom:16px;">What I do</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.2rem,4vw,3.2rem); line-height:1.06; margin:0 0 16px; color:#F2F5FB;">Solutions built around your situation, not the bank's.</h2>
+      <p style="font-size:1.08rem; line-height:1.6; color:#A7B2C6; margin:0;">Whatever stage you're at, I find the lender and structure that actually fits your needs and gets you to a confident yes.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(248px,1fr)); gap:20px;">
+      <div class="fb-reveal fb-card">
+        <div style="width:46px; height:46px; border-radius:12px; background:rgba(77,163,255,.12); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><i data-lucide="key-round" style="width:22px; height:22px; color:#4DA3FF;"></i></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.55rem; margin:0 0 10px; color:#EAEEF6;">Purchases &amp; pre-approval</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#94A0B6; margin:0;">First home or next home: know exactly what you qualify for before you make an offer, with rates held while you shop.</p>
+      </div>
+      <div class="fb-reveal fb-card">
+        <div style="width:46px; height:46px; border-radius:12px; background:rgba(77,163,255,.12); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><i data-lucide="refresh-cw" style="width:22px; height:22px; color:#4DA3FF;"></i></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.55rem; margin:0 0 10px; color:#EAEEF6;">Refinancing</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#94A0B6; margin:0;">Lower your payment, consolidate debt, or unlock equity for a renovation, restructured around what you need today.</p>
+      </div>
+      <div class="fb-reveal fb-card">
+        <div style="width:46px; height:46px; border-radius:12px; background:rgba(77,163,255,.12); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><i data-lucide="repeat" style="width:22px; height:22px; color:#4DA3FF;"></i></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.55rem; margin:0 0 10px; color:#EAEEF6;">Renewals &amp; switches</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#94A0B6; margin:0;">Don't auto-sign your renewal. I shop the whole market so your next term beats whatever your current lender offers.</p>
+      </div>
+      <div class="fb-reveal fb-card">
+        <div style="width:46px; height:46px; border-radius:12px; background:rgba(77,163,255,.12); display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><i data-lucide="briefcase" style="width:22px; height:22px; color:#4DA3FF;"></i></div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.55rem; margin:0 0 10px; color:#EAEEF6;">Self-employed &amp; complex income</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#94A0B6; margin:0;">Business owner, new to Canada, or non-standard income? I know the lenders who say yes, and how to package your file.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" style="position:relative; z-index:1; padding:clamp(4rem,7vw,6.5rem) clamp(1.25rem,5vw,2rem); max-width:1200px; margin:0 auto;">
+    <div class="fb-reveal" style="text-align:center; max-width:600px; margin:0 auto 56px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#4DA3FF; margin-bottom:16px;">How it works</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.2rem,4vw,3.2rem); line-height:1.06; margin:0; color:#F2F5FB;">Three calm steps to approved.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px;">
+      <div class="fb-reveal fb-process-card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:3.2rem; font-weight:600; color:rgba(77,163,255,.55); line-height:1; margin-bottom:14px;">01</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.5rem; margin:0 0 10px; color:#EAEEF6;">Tell me your goals</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#94A0B6; margin:0;">A quick, no-pressure call. We talk through your plans, timeline, and budget. No paperwork needed yet.</p>
+      </div>
+      <div class="fb-reveal fb-process-card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:3.2rem; font-weight:600; color:rgba(77,163,255,.55); line-height:1; margin-bottom:14px;">02</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.5rem; margin:0 0 10px; color:#EAEEF6;">I compare 50+ lenders</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#94A0B6; margin:0;">I shop the whole market and bring you the best rate and terms for your situation, explained in plain language.</p>
+      </div>
+      <div class="fb-reveal fb-process-card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:3.2rem; font-weight:600; color:rgba(77,163,255,.55); line-height:1; margin-bottom:14px;">03</div>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.5rem; margin:0 0 10px; color:#EAEEF6;">Get approved &amp; close</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#94A0B6; margin:0;">I handle the lender, the paperwork, and the details, staying responsive from pre-approval right through to your keys.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" style="position:relative; z-index:1; padding:clamp(4rem,7vw,6.5rem) clamp(1.25rem,5vw,2rem); max-width:1200px; margin:0 auto;">
+    <div class="fb-reveal" style="max-width:640px; margin-bottom:52px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#4DA3FF; margin-bottom:16px;">Results</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.2rem,4vw,3.2rem); line-height:1.06; margin:0 0 14px; color:#F2F5FB;">Real outcomes for real families.</h2>
+      <p style="font-size:1.05rem; line-height:1.6; color:#A7B2C6; margin:0;">A few recent snapshots. Figures are representative. Your result depends on your situation.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(248px,1fr)); gap:20px;">
+      <div class="fb-reveal fb-result-card">
+        <div style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:clamp(2.6rem,4vw,3.4rem); color:#4DA3FF; line-height:1;"><span data-count="38" data-prefix="+" data-suffix="%">+38%</span></div>
+        <div style="margin-top:10px; font-size:14.5px; color:#B6C0D2; font-weight:600;">More buying power</div>
+        <p style="margin:6px 0 0; font-size:13.5px; line-height:1.55; color:#7E8CA2;">vs. the pre-approval their own bank first offered.</p>
+      </div>
+      <div class="fb-reveal fb-result-card">
+        <div style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:clamp(2.6rem,4vw,3.4rem); color:#4DA3FF; line-height:1;"><span data-count="11" data-suffix=" days">11 days</span></div>
+        <div style="margin-top:10px; font-size:14.5px; color:#B6C0D2; font-weight:600;">Application to approval</div>
+        <p style="margin:6px 0 0; font-size:13.5px; line-height:1.55; color:#7E8CA2;">A self-employed buyer in Burnaby, fully approved.</p>
+      </div>
+      <div class="fb-reveal fb-result-card">
+        <div style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:clamp(2.6rem,4vw,3.4rem); color:#4DA3FF; line-height:1;"><span data-count="430" data-prefix="$" data-suffix="/mo">$430/mo</span></div>
+        <div style="margin-top:10px; font-size:14.5px; color:#B6C0D2; font-weight:600;">Saved on a refinance</div>
+        <p style="margin:6px 0 0; font-size:13.5px; line-height:1.55; color:#7E8CA2;">Debt consolidated into one lower monthly payment.</p>
+      </div>
+      <div class="fb-reveal fb-result-card">
+        <div style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:clamp(2.6rem,4vw,3.4rem); color:#4DA3FF; line-height:1;"><span data-count="200" data-suffix="+">200+</span></div>
+        <div style="margin-top:10px; font-size:14.5px; color:#B6C0D2; font-weight:600;">Families helped home</div>
+        <p style="margin:6px 0 0; font-size:13.5px; line-height:1.55; color:#7E8CA2;">Across British Columbia and Alberta, and counting.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" style="position:relative; z-index:1; padding:clamp(4rem,7vw,6.5rem) clamp(1.25rem,5vw,2rem); max-width:1200px; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:clamp(36px,5vw,64px); align-items:center;">
+      <div class="fb-reveal" style="position:relative;">
+        <div style="position:absolute; inset:18px -18px -18px 18px; border:1px solid rgba(77,163,255,.35); border-radius:18px; z-index:0;"></div>
+        <div style="position:relative; z-index:1; border-radius:18px; overflow:hidden; border:1px solid rgba(120,170,255,.18); box-shadow:0 40px 90px -40px rgba(0,20,60,.95), 0 0 60px -20px rgba(77,163,255,.25);">
+          <img src="project/assets/farzad-portrait.jpg" alt="Farzad Behzadi" style="display:block; width:100%; height:auto;">
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,9,15,0) 55%, rgba(7,9,15,.35)); pointer-events:none;"></div>
+        </div>
+      </div>
+      <div class="fb-reveal">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#4DA3FF; margin-bottom:16px;">Meet your advisor</div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.1rem,3.6vw,3rem); line-height:1.08; margin:0 0 20px; color:#F2F5FB;">Farzad Behzadi</h2>
+        <p style="font-size:1.08rem; line-height:1.65; color:#A7B2C6; margin:0 0 18px;">For 8+ years I've guided families across BC &amp; Alberta to the right mortgage. I'm bilingual in English and Persian, and I treat your file like it's my own: comparing the whole market, explaining your options clearly, and answering when you call.</p>
+        <p style="font-size:1.08rem; line-height:1.65; color:#A7B2C6; margin:0 0 28px;">A mortgage is one of life's biggest decisions. My job is to make it feel calm, clear, and genuinely in your corner.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px;">
+          <div style="display:flex; align-items:center; gap:9px; padding:9px 15px; border-radius:10px; background:rgba(255,255,255,.03); border:1px solid rgba(120,170,255,.12); font-size:13.5px; color:#C4CDDC;"><i data-lucide="map-pin" style="width:16px; height:16px; color:#4DA3FF;"></i> Licensed in BC &amp; Alberta</div>
+          <div style="display:flex; align-items:center; gap:9px; padding:9px 15px; border-radius:10px; background:rgba(255,255,255,.03); border:1px solid rgba(120,170,255,.12); font-size:13.5px; color:#C4CDDC;"><i data-lucide="languages" style="width:16px; height:16px; color:#4DA3FF;"></i> English &amp; Persian</div>
+          <div style="display:flex; align-items:center; gap:9px; padding:9px 15px; border-radius:10px; background:rgba(255,255,255,.03); border:1px solid rgba(120,170,255,.12); font-size:13.5px; color:#C4CDDC;"><i data-lucide="building-2" style="width:16px; height:16px; color:#4DA3FF;"></i> RTC Mortgage Brokerage</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" style="position:relative; z-index:1; padding:clamp(4rem,7vw,6.5rem) clamp(1.25rem,5vw,2rem); max-width:1200px; margin:0 auto;">
+    <div style="position:relative; background:linear-gradient(165deg, rgba(16,24,40,.9), rgba(9,13,22,.95)); border:1px solid rgba(120,170,255,.16); border-radius:24px; overflow:hidden; box-shadow:0 40px 100px -40px rgba(0,20,60,.95);">
+      <div style="position:absolute; top:-30%; right:-10%; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(77,163,255,.22), rgba(77,163,255,0) 65%); pointer-events:none;"></div>
+      <div style="position:relative; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:clamp(32px,4vw,56px); padding:clamp(2.4rem,5vw,3.8rem);">
+        <div class="fb-reveal">
+          <div style="display:inline-flex; align-items:center; gap:9px; padding:6px 13px; border-radius:100px; border:1px solid rgba(77,163,255,.25); background:rgba(77,163,255,.07); margin-bottom:22px;">
+            <span style="width:7px; height:7px; border-radius:50%; background:#4DA3FF; animation:fb-pulse 2s ease-in-out infinite; display:inline-block;"></span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:.12em; color:#9FC4F2;">USUALLY REPLIES IN MINUTES</span>
+          </div>
+          <h2 style="font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.1rem,3.8vw,3.1rem); line-height:1.06; margin:0 0 18px; color:#F2F5FB;">Let's get you approved.</h2>
+          <p style="font-size:1.08rem; line-height:1.65; color:#A7B2C6; margin:0 0 30px; max-width:34ch;">Book a free, no-obligation consultation. Tell me where you're at and I'll map out your best path, in English or Persian.</p>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <a href="tel:+16042884537" style="display:flex; align-items:center; gap:13px; text-decoration:none; color:#D4DCEA;">
+              <span style="width:42px; height:42px; border-radius:11px; background:rgba(77,163,255,.12); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><i data-lucide="phone" style="width:19px; height:19px; color:#4DA3FF;"></i></span>
+              <span>
+                <span style="display:block; font-size:11.5px; color:#7E8CA2; letter-spacing:.04em;">Call or text</span>
+                <span style="display:block; font-size:15px; font-weight:600;">(604) 288-4537</span>
+              </span>
+            </a>
+            <a href="mailto:farzad@rtcmortgage.ca" style="display:flex; align-items:center; gap:13px; text-decoration:none; color:#D4DCEA;">
+              <span style="width:42px; height:42px; border-radius:11px; background:rgba(77,163,255,.12); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><i data-lucide="mail" style="width:19px; height:19px; color:#4DA3FF;"></i></span>
+              <span>
+                <span style="display:block; font-size:11.5px; color:#7E8CA2; letter-spacing:.04em;">Email</span>
+                <span style="display:block; font-size:15px; font-weight:600;">farzad@rtcmortgage.ca</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <form id="fb-contact-form" class="fb-reveal" style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px;">
+            <label style="display:flex; flex-direction:column; gap:7px;">
+              <span style="font-size:12.5px; font-weight:600; color:#9AA6BC;">Full name</span>
+              <input type="text" name="name" placeholder="Your name" class="fb-input" required>
+            </label>
+            <label style="display:flex; flex-direction:column; gap:7px;">
+              <span style="font-size:12.5px; font-weight:600; color:#9AA6BC;">Phone</span>
+              <input type="tel" name="phone" placeholder="(604) 000-0000" class="fb-input">
+            </label>
+          </div>
+          <label style="display:flex; flex-direction:column; gap:7px;">
+            <span style="font-size:12.5px; font-weight:600; color:#9AA6BC;">Email</span>
+            <input type="email" name="email" placeholder="you@email.com" class="fb-input" required>
+          </label>
+          <label style="display:flex; flex-direction:column; gap:7px;">
+            <span style="font-size:12.5px; font-weight:600; color:#9AA6BC;">How can I help?</span>
+            <textarea name="message" rows="3" placeholder="Buying, refinancing, renewing…" class="fb-input" style="resize:vertical;"></textarea>
+          </label>
+          <button type="submit" id="fb-submit" class="fb-submit">
+            Book a consultation<i data-lucide="arrow-right" style="width:18px; height:18px;"></i>
+          </button>
+          <p style="margin:2px 0 0; font-size:12px; color:#6E7C92; text-align:center;">No obligation · Registered under RTC Mortgage Brokerage</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="position:relative; z-index:1; border-top:1px solid rgba(120,170,255,.08); padding:clamp(2.6rem,4vw,3.4rem) clamp(1.25rem,5vw,2rem) clamp(2rem,3vw,2.6rem);">
+    <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; gap:28px; align-items:flex-start; justify-content:space-between;">
+      <div style="max-width:38ch;">
+        <img src="project/assets/logo-horizontal-white.png" alt="Farzad Behzadi" style="height:50px; width:auto; display:block; margin-bottom:16px; opacity:.92;">
+        <p style="font-size:13.5px; line-height:1.6; color:#7E8CA2; margin:0;">Trusted mortgage advice for families across British Columbia &amp; Alberta, in English and Persian.</p>
+      </div>
+      <div style="display:flex; gap:48px; flex-wrap:wrap;">
+        <div style="display:flex; flex-direction:column; gap:11px;">
+          <span style="font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#5E6B80;">Explore</span>
+          <a href="#services" class="fb-footer-link">What I do</a>
+          <a href="#process" class="fb-footer-link">How it works</a>
+          <a href="#results" class="fb-footer-link">Results</a>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:11px;">
+          <span style="font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#5E6B80;">Contact</span>
+          <a href="tel:+16042884537" class="fb-footer-link">(604) 288-4537</a>
+          <a href="mailto:farzad@rtcmortgage.ca" class="fb-footer-link">farzad@rtcmortgage.ca</a>
+          <a href="#contact" style="color:#4DA3FF; text-decoration:none; font-size:14px; font-weight:600;">Book a consultation</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1200px; margin:30px auto 0; padding-top:22px; border-top:1px solid rgba(120,170,255,.07); display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;">
+      <span style="font-size:12px; color:#5E6B80;">© 2026 Farzad Behzadi Personal Mortgage Corporation.</span>
+      <span style="font-size:12px; color:#5E6B80;">Registered under RTC Mortgage Brokerage · Licensed in BC &amp; Alberta.</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Lucide icons
+  function initIcons() {
+    let tries = 0;
+    const run = () => {
+      if (window.lucide && window.lucide.createIcons) {
+        try { window.lucide.createIcons(); } catch (e) {}
+      } else if (tries++ < 40) {
+        setTimeout(run, 120);
+      }
+    };
+    run();
+  }
+
+  // Reveal on scroll
+  function initReveals() {
+    const els = Array.from(document.querySelectorAll('.fb-reveal'));
+    if (reduced) {
+      els.forEach(el => { el.classList.add('visible'); });
+      return;
+    }
+    function reveal(el) {
+      if (el._shown) return;
+      el._shown = true;
+      const siblings = Array.from(el.parentElement ? el.parentElement.children : [el])
+        .filter(c => c.classList && c.classList.contains('fb-reveal'));
+      const idx = Math.max(0, siblings.indexOf(el));
+      el.style.transitionDelay = (idx * 0.09) + 's';
+      setTimeout(() => el.classList.add('visible'), 16);
+    }
+
+    // IntersectionObserver — fires reliably regardless of scroll container
+    if (window.IntersectionObserver) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } });
+      }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(el => io.observe(el));
+    }
+
+    // Fallback: scroll + resize + persistent poll
+    function inView(el) {
+      const r = el.getBoundingClientRect();
+      const h = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < h * 0.94 && r.bottom > 0;
+    }
+    function check() {
+      els.forEach(el => { if (!el._shown && inView(el)) reveal(el); });
+    }
+    window.addEventListener('scroll', check, { passive: true, capture: true });
+    document.addEventListener('scroll', check, { passive: true, capture: true });
+    window.addEventListener('resize', check, { passive: true });
+    check();
+    const iv = setInterval(() => {
+      check();
+      if (els.every(e => e._shown)) clearInterval(iv);
+    }, 150);
+  }
+
+  // Animated counters
+  function initCounters() {
+    const nodes = Array.from(document.querySelectorAll('[data-count]'));
+    if (reduced) {
+      nodes.forEach(n => {
+        const t = parseFloat(n.getAttribute('data-count')) || 0;
+        n.textContent = (n.getAttribute('data-prefix') || '') + t + (n.getAttribute('data-suffix') || '');
+      });
+      return;
+    }
+    function animate(n) {
+      const target = parseFloat(n.getAttribute('data-count')) || 0;
+      const prefix = n.getAttribute('data-prefix') || '';
+      const suffix = n.getAttribute('data-suffix') || '';
+      const dur = 1400;
+      const start = performance.now();
+      const ease = t => 1 - Math.pow(1 - t, 3);
+      const tick = now => {
+        const p = Math.min(1, (now - start) / dur);
+        n.textContent = prefix + Math.round(target * ease(p)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else n.textContent = prefix + target + suffix;
+      };
+      requestAnimationFrame(tick);
+    }
+    function inView(el) {
+      const r = el.getBoundingClientRect();
+      const h = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < h * 0.9 && r.bottom > 0;
+    }
+    function check() {
+      nodes.forEach(n => { if (!n._done && inView(n)) { n._done = true; animate(n); } });
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    check();
+    const iv = setInterval(() => {
+      check();
+      if (nodes.every(n => n._done)) clearInterval(iv);
+    }, 120);
+  }
+
+  // Chat animation
+  function initChat() {
+    const bubbles = Array.from(document.querySelectorAll('[data-chat]'))
+      .sort((a, b) => (+a.getAttribute('data-chat')) - (+b.getAttribute('data-chat')));
+    const typing = document.getElementById('fb-typing');
+    if (!bubbles.length) return;
+    if (reduced) {
+      bubbles.forEach(b => { b.style.opacity = '1'; b.style.transform = 'none'; });
+      if (typing) typing.style.display = 'none';
+      return;
+    }
+    const container = document.getElementById('fb-chat');
+    let started = false;
+    function showBubble(i) {
+      const b = bubbles[i];
+      if (!b) { if (typing) typing.style.opacity = '0'; return; }
+      const fromFarzad = b.style.alignSelf === 'flex-end';
+      if (typing) {
+        typing.style.opacity = '1';
+        typing.style.alignSelf = fromFarzad ? 'flex-end' : 'flex-start';
+      }
+      const delay = i === 0 ? 500 : 1100;
+      setTimeout(() => {
+        if (typing) typing.style.opacity = '0';
+        setTimeout(() => { b.style.opacity = '1'; b.style.transform = 'none'; }, 16);
+        setTimeout(() => showBubble(i + 1), 650);
+      }, delay);
+    }
+    function inView(el) {
+      const r = el.getBoundingClientRect();
+      const h = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < h * 0.9 && r.bottom > 0;
+    }
+    function check() {
+      if (started || !container || !inView(container)) return;
+      started = true;
+      showBubble(0);
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    check();
+    const iv = setInterval(() => { check(); if (started) clearInterval(iv); }, 120);
+  }
+
+  // Contact form
+  function initContact() {
+    const form = document.getElementById('fb-contact-form');
+    const btn = document.getElementById('fb-submit');
+    if (!form || !btn) return;
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (btn.dataset.done) return;
+      btn.dataset.done = '1';
+      btn.classList.add('sent');
+      btn.innerHTML = '';
+      const ic = document.createElement('i');
+      ic.setAttribute('data-lucide', 'check-circle-2');
+      ic.style.width = '18px'; ic.style.height = '18px';
+      const span = document.createElement('span');
+      span.textContent = "Sent. I'll be in touch shortly";
+      btn.appendChild(ic); btn.appendChild(span);
+      if (window.lucide && window.lucide.createIcons) {
+        try { window.lucide.createIcons(); } catch (err) {}
+      }
+    });
+  }
+
+  // Script is at bottom of body — DOM is ready, run immediately.
+  // Also guard with DOMContentLoaded in case parser hasn't quite finished.
+  function init() {
+    initIcons();
+    initReveals();
+    initCounters();
+    initChat();
+    initContact();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</body>
+</html>
