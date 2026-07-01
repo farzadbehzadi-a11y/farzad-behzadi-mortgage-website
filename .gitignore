@@ -5,3 +5,4 @@ project/uploads/
 project/support.js
 project/.thumbnail
 .claude/
+.env*.local

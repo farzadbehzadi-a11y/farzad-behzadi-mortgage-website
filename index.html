@@ -515,6 +515,7 @@
           <button type="submit" id="fb-submit" class="fb-submit">
             Book a consultation<i data-lucide="arrow-right" style="width:18px; height:18px;"></i>
           </button>
+          <p id="fb-form-status" role="status" style="margin:2px 0 0; font-size:13px; text-align:center; min-height:16px;"></p>
           <p style="margin:2px 0 0; font-size:12px; color:#6E7C92; text-align:center;">No obligation · Registered under RTC Mortgage Brokerage</p>
         </form>
       </div>
@@ -711,11 +712,10 @@
   function initContact() {
     const form = document.getElementById('fb-contact-form');
     const btn = document.getElementById('fb-submit');
+    const statusEl = document.getElementById('fb-form-status');
     if (!form || !btn) return;
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      if (btn.dataset.done) return;
-      btn.dataset.done = '1';
+
+    function showSent() {
       btn.classList.add('sent');
       btn.innerHTML = '';
       const ic = document.createElement('i');
@@ -726,6 +726,46 @@
       btn.appendChild(ic); btn.appendChild(span);
       if (window.lucide && window.lucide.createIcons) {
         try { window.lucide.createIcons(); } catch (err) {}
+      }
+      if (statusEl) { statusEl.style.color = '#4DA3FF'; statusEl.textContent = ''; }
+    }
+
+    function showError() {
+      btn.disabled = false;
+      btn.dataset.sending = '';
+      if (statusEl) {
+        statusEl.style.color = '#FF8080';
+        statusEl.textContent = "Something went wrong. Please call or email us directly.";
+      }
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (btn.dataset.done || btn.dataset.sending === '1') return;
+      btn.dataset.sending = '1';
+      btn.disabled = true;
+      if (statusEl) statusEl.textContent = '';
+
+      const formData = new FormData(form);
+      const payload = {
+        fullName: (formData.get('name') || '').toString().trim(),
+        email: (formData.get('email') || '').toString().trim(),
+        phone: (formData.get('phone') || '').toString().trim(),
+        message: (formData.get('message') || '').toString().trim()
+      };
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error('Request failed with status ' + response.status);
+        btn.dataset.done = '1';
+        showSent();
+        form.reset();
+      } catch (err) {
+        showError();
       }
     });
   }
