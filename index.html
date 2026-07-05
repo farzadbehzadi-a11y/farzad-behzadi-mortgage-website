@@ -754,13 +754,32 @@
         message: (formData.get('message') || '').toString().trim()
       };
 
+      // The /api/contact serverless function only exists on hosts like Vercel.
+      // On static hosting (or localhost) it 404s, so fall back to posting
+      // straight to the n8n webhook, which allows cross-origin requests.
+      // Localhost uses n8n's test webhook (requires "Listen for test event"
+      // active in the n8n editor) so local runs never touch production data.
+      const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+      const WEBHOOK_URL = isLocalhost
+        ? 'https://farzadbehzadi.app.n8n.cloud/webhook-test/contact-form'
+        : 'https://farzadbehzadi.app.n8n.cloud/webhook/contact-form';
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      };
+
+      async function sendLead() {
+        try {
+          const response = await fetch('/api/contact', requestOptions);
+          if (response.ok) return;
+        } catch (err) {}
+        const direct = await fetch(WEBHOOK_URL, requestOptions);
+        if (!direct.ok) throw new Error('Webhook failed with status ' + direct.status);
+      }
+
       try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!response.ok) throw new Error('Request failed with status ' + response.status);
+        await sendLead();
         btn.dataset.done = '1';
         showSent();
         form.reset();
