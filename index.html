@@ -512,6 +512,10 @@
             <span style="font-size:12.5px; font-weight:600; color:#9AA6BC;">How can I help?</span>
             <textarea name="message" rows="3" placeholder="Buying, refinancing, renewing…" class="fb-input" style="resize:vertical;"></textarea>
           </label>
+          <label style="display:flex; align-items:flex-start; gap:10px; margin-top:2px; cursor:pointer;">
+            <input type="checkbox" name="consent" value="yes" required style="margin-top:3px; width:16px; height:16px; accent-color:#4DA3FF; flex:none;">
+            <span style="font-size:12.5px; line-height:1.55; color:#8492A8;">I agree that Farzad Behzadi, of RTC Mortgage Brokerage, may contact me by phone, text or email about this enquiry — including by an automated assistant — and that calls may be recorded. See the <a href="/privacy.html" style="color:#4DA3FF; text-decoration:underline;">Privacy Policy</a>.</span>
+          </label>
           <button type="submit" id="fb-submit" class="fb-submit">
             Book a consultation<i data-lucide="arrow-right" style="width:18px; height:18px;"></i>
           </button>
@@ -545,7 +549,7 @@
       </div>
     </div>
     <div style="max-width:1200px; margin:30px auto 0; padding-top:22px; border-top:1px solid rgba(120,170,255,.07); display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;">
-      <span style="font-size:12px; color:#5E6B80;">© 2026 Farzad Behzadi Personal Mortgage Corporation.</span>
+      <span style="font-size:12px; color:#5E6B80;">© 2026 Farzad Behzadi Personal Mortgage Corporation. · <a href="/privacy.html" style="color:#7E8CA2; text-decoration:none;">Privacy Policy</a></span>
       <span style="font-size:12px; color:#5E6B80;">Registered under RTC Mortgage Brokerage · Licensed in BC &amp; Alberta.</span>
     </div>
   </footer>
@@ -751,7 +755,10 @@
         fullName: (formData.get('name') || '').toString().trim(),
         email: (formData.get('email') || '').toString().trim(),
         phone: (formData.get('phone') || '').toString().trim(),
-        message: (formData.get('message') || '').toString().trim()
+        message: (formData.get('message') || '').toString().trim(),
+        consent: formData.get('consent') === 'yes',
+        consentText: 'I agree that Farzad Behzadi, of RTC Mortgage Brokerage, may contact me by phone, text or email about this enquiry — including by an automated assistant — and that calls may be recorded.',
+        consentAt: new Date().toISOString()
       };
 
       // The /api/contact serverless function only exists on hosts like Vercel.
