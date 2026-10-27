@@ -6,3 +6,5 @@ project/support.js
 project/.thumbnail
 .claude/
 .env*.local
+
+tests/node_modules/

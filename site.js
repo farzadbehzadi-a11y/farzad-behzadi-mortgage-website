@@ -33,6 +33,115 @@
 
   if (window.lucide) window.lucide.createIcons();
 
+  // A manual, scroll-snap carousel: no timed rotation or cloned reviews.
+  async function initReviews() {
+    const section = document.getElementById('testimonials');
+    if (!section) return;
+    const track = section.querySelector('[data-reviews-track]');
+    const template = document.getElementById('review-card-template');
+    const previous = section.querySelector('[data-reviews-prev]');
+    const next = section.querySelector('[data-reviews-next]');
+    const position = section.querySelector('[data-reviews-position]');
+    const controls = section.querySelector('[data-reviews-controls]');
+    const isLocal = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+
+    function safeUrl(value) {
+      try {
+        const url = new URL(value);
+        return url.protocol === 'https:' ? url.href : '';
+      } catch { return ''; }
+    }
+
+    let data;
+    try {
+      const response = await fetch('reviews.json');
+      if (!response.ok) throw new Error('Reviews unavailable');
+      data = await response.json();
+      if (!data || typeof data !== 'object') data = {};
+    } catch { data = {}; }
+    const reviews = (Array.isArray(data.reviews) ? data.reviews : [])
+      .filter(review => review && typeof review.author === 'string' && review.author.trim()
+        && typeof review.quote === 'string' && review.quote.trim());
+    const preview = reviews.length === 0;
+    if (preview && !isLocal) return;
+    if (preview) {
+      section.querySelector('[data-reviews-preview]').hidden = false;
+      ['a first home', 'a refinance', 'a mortgage renewal', 'self-employed income', 'ongoing support'].forEach(topic => {
+        reviews.push({ author: 'Client testimonial placeholder', quote: `An approved client review about ${topic} will appear here.`, source: 'Preview only' });
+      });
+    }
+
+    reviews.forEach((review, index) => {
+      const card = template.content.firstElementChild.cloneNode(true);
+      card.setAttribute('aria-label', `${index + 1} of ${reviews.length}`);
+      card.querySelector('.review-quote').textContent = review.quote.trim();
+      card.querySelector('.review-name').textContent = review.author.trim();
+      card.querySelector('.review-avatar').textContent = preview ? '—' : review.author.trim().split(/\s+/).slice(0, 2).map(word => Array.from(word)[0]).join('');
+      card.querySelector('.review-source').textContent = review.source === 'Google' ? (review.excerpt ? 'Google review excerpt' : 'Google review') : preview ? 'Preview only' : 'Client testimonial';
+      if (Number.isInteger(review.rating) && review.rating >= 1 && review.rating <= 5) {
+        const rating = card.querySelector('.testimonial-rating');
+        rating.hidden = false;
+        rating.setAttribute('aria-label', `${review.rating} out of 5 stars`);
+        rating.firstElementChild.textContent = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+      }
+      const originalUrl = safeUrl(review.url);
+      if (originalUrl) {
+        const link = card.querySelector('.review-original');
+        link.href = originalUrl;
+        link.hidden = false;
+        link.setAttribute('aria-label', `Read ${review.author.trim()}’s original review (opens in a new tab)`);
+      }
+      track.appendChild(card);
+    });
+    const googleUrl = safeUrl(data.googleReviewsUrl);
+    if (googleUrl && !preview) {
+      const link = section.querySelector('[data-google-reviews-link]');
+      link.href = googleUrl;
+      link.hidden = false;
+    }
+    section.hidden = false;
+    const cards = Array.from(track.children);
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function update() {
+      const max = track.scrollWidth - track.clientWidth;
+      previous.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max - 2;
+      controls.hidden = max <= 2;
+      const bounds = track.getBoundingClientRect();
+      const visible = cards.map((card, index) => ({ card, index })).filter(({ card }) => {
+        const rect = card.getBoundingClientRect();
+        return rect.right > bounds.left + 12 && rect.left < bounds.right - 12;
+      });
+      if (visible.length) {
+        const first = visible[0].index + 1;
+        const last = visible[visible.length - 1].index + 1;
+        position.textContent = first === last ? `${first} of ${cards.length}` : `${first}–${last} of ${cards.length}`;
+      }
+    }
+    function move(direction) {
+      const step = cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap);
+      track.scrollBy({ left: step * direction, behavior: reduced.matches ? 'auto' : 'smooth' });
+    }
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    track.addEventListener('keydown', event => {
+      if (event.target !== track) return;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        move(event.key === 'ArrowRight' ? 1 : -1);
+      } else if (event.key === 'Home' || event.key === 'End') {
+        event.preventDefault();
+        track.scrollTo({ left: event.key === 'Home' ? 0 : track.scrollWidth, behavior: reduced.matches ? 'auto' : 'smooth' });
+      }
+    });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  }
+
+  initReviews();
+
   // Contact form
   function initContact() {
     const form = document.getElementById('fb-contact-form');
