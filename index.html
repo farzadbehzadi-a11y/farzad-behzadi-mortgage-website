@@ -90,6 +90,29 @@
       </div>
     </section>
 
+    <section id="testimonials" class="section testimonials-section" aria-labelledby="testimonials-title" aria-roledescription="carousel" hidden>
+      <div class="container">
+        <div class="section-heading testimonials-heading">
+          <div><p class="section-label">Client reviews</p><h2 id="testimonials-title">In our clients’ words.</h2></div>
+          <div class="testimonials-intro"><p>Personal experiences, shared by the people behind the mortgage.</p><a class="text-link" data-google-reviews-link target="_blank" rel="noopener noreferrer" hidden>Read reviews on Google <i data-lucide="arrow-up-right" aria-hidden="true"></i></a></div>
+        </div>
+        <p class="reviews-preview-note" data-reviews-preview hidden>Local design preview · Approved testimonials pending. The cards below are placeholders, not client reviews.</p>
+        <p id="testimonials-instructions" class="visually-hidden">Swipe to browse, or use the previous and next buttons. When the review list is focused, use the Left and Right arrow keys, Home, or End.</p>
+        <div id="testimonials-track" class="testimonials-track" tabindex="0" role="group" aria-label="Client reviews" aria-describedby="testimonials-instructions" data-reviews-track></div>
+        <div class="testimonials-toolbar" data-reviews-controls hidden>
+          <p class="reviews-position" data-reviews-position role="status" aria-live="polite" aria-atomic="true"></p>
+          <div class="reviews-buttons"><button class="review-arrow" type="button" data-reviews-prev aria-label="Previous reviews" aria-controls="testimonials-track"><i data-lucide="arrow-left" aria-hidden="true"></i></button><button class="review-arrow" type="button" data-reviews-next aria-label="Next reviews" aria-controls="testimonials-track"><i data-lucide="arrow-right" aria-hidden="true"></i></button></div>
+        </div>
+        <template id="review-card-template">
+          <article class="testimonial-card" role="group" aria-roledescription="slide">
+            <div class="review-card-meta"><p class="review-source"></p><p class="testimonial-rating" role="img" hidden><span aria-hidden="true"></span></p></div>
+            <blockquote><p class="review-quote" dir="auto"></p></blockquote>
+            <footer class="review-author"><span class="review-avatar" aria-hidden="true"></span><div><p class="review-name" dir="auto"></p><a class="review-original" target="_blank" rel="noopener noreferrer" hidden>Read original review</a></div></footer>
+          </article>
+        </template>
+      </div>
+    </section>
+
     <section id="about" class="section about-section" aria-labelledby="about-title">
       <div class="container about-grid">
         <div class="about-copy"><p class="section-label">Meet your advisor</p><h2 id="about-title">A person in your corner.<br>From day one.</h2><p>For 8+ years, I’ve guided families across BC &amp; Alberta to the right mortgage. I treat your file like it’s my own: comparing lenders, explaining your options clearly, and answering when you call.</p><p>A mortgage is one of life’s biggest decisions. My job is to help you feel calm, informed, and confident about yours.</p><div class="advisor-signoff"><span class="advisor-name">Farzad Behzadi</span><span>Senior Mortgage Consultant</span></div></div>
