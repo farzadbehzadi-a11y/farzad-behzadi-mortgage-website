@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#132c3f">
+  <meta name="theme-color" content="#101d27">
+  <script>
+    // Applies a saved theme before first paint; dark is the default in the markup.
+    try { const t = localStorage.getItem('fb-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
   <title>Privacy Policy · Farzad Behzadi · RTC Mortgage Brokerage</title>
   <meta name="description" content="How Farzad Behzadi, of RTC Mortgage Brokerage, collects, uses, records and protects your personal information.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +19,7 @@
 </head>
 <body class="policy-page">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header"><div class="container nav-bar"><a class="brand" href="/" aria-label="Farzad Behzadi home"><img src="project/assets/logo-horizontal-white.png" alt="Farzad Behzadi" width="2106" height="566"></a><a class="button button-header" href="/">Back to site</a></div></header>
+  <header class="site-header"><div class="container nav-bar"><a class="brand" href="/" aria-label="Farzad Behzadi home"><img src="project/assets/logo-horizontal-white.png" alt="Farzad Behzadi" width="2106" height="566"></a><div class="header-actions"><button type="button" class="theme-toggle" data-theme-toggle hidden aria-label="Switch to light theme" title="Switch to light theme"><i data-lucide="sun" aria-hidden="true"></i><i data-lucide="moon" aria-hidden="true"></i></button><a class="button button-header" href="/">Back<span class="back-label-rest"> to site</span></a></div></div></header>
   <div class="policy-container policy-header"><p class="policy-meta">Last updated 26 October 2026</p><h1>Privacy Policy</h1><p class="policy-lead">This policy explains what personal information Farzad Behzadi collects, how it is used, when calls are recorded, and the choices you have. It applies to this website, to phone calls and messages, and to any mortgage application handled on your behalf.</p></div>
   <main id="main" class="policy-container policy-body">
 

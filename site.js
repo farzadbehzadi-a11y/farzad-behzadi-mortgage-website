@@ -31,6 +31,31 @@
     });
   }
 
+  // Dark is the default; a visitor's choice is remembered on this device.
+  const themeToggle = document.querySelector('[data-theme-toggle]');
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  function applyTheme(theme) {
+    // Swap every colour at once: hover transitions would otherwise fade some elements late.
+    const html = document.documentElement;
+    html.classList.add('theme-changing');
+    html.dataset.theme = theme;
+    void html.offsetHeight;
+    html.classList.remove('theme-changing');
+    if (themeColor) themeColor.content = theme === 'dark' ? '#101d27' : '#132c3f';
+    const label = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+    themeToggle.setAttribute('aria-label', label);
+    themeToggle.title = label;
+  }
+  if (themeToggle) {
+    themeToggle.hidden = false;
+    applyTheme(document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
+    themeToggle.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      try { localStorage.setItem('fb-theme', next); } catch (e) {}
+    });
+  }
+
   if (window.lucide) window.lucide.createIcons();
 
   // A manual, scroll-snap carousel: no timed rotation or cloned reviews.

@@ -22,6 +22,32 @@
   --body: 'Hanken Grotesk', system-ui, sans-serif;
   --display: 'Cormorant Garamond', Georgia, serif;
 }
+/* Dark theme (default). <html data-theme="dark"> is set in the markup; the toggle switches to light. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #101d27;
+  --surface-raised: #1b303e;
+  --action: #dfc590;
+  --action-hover: #ecd7ad;
+  --navy: #101d27;
+  --navy-deep: #0b1720;
+  --ink: #edf3f6;
+  --muted: #b2c1cc;
+  --blue: #a7c9df;
+  --brass: #c6aa74;
+  --mist: #142632;
+  --line: #354957;
+  --review-surface: var(--surface-raised);
+  --review-avatar: var(--canvas);
+  --review-stars: #dfc590;
+  --assistant-surface: var(--mist);
+  --assistant-raised: var(--surface-raised);
+  --assistant-header: var(--navy-deep);
+  --assistant-action: var(--action);
+  --assistant-action-hover: var(--action-hover);
+  --assistant-action-ink: var(--navy-deep);
+  --assistant-accent: var(--navy-deep);
+}
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 112px; }
 body { margin: 0; background: var(--white); color: var(--ink); font: 16px/1.65 var(--body); -webkit-font-smoothing: antialiased; }
@@ -61,6 +87,12 @@ svg { width: 20px; height: 20px; stroke-width: 1.6; flex-shrink: 0; }
 .primary-menu > .button-header { border-color: #ffffff48; padding: 12px 17px; color: var(--white); min-height: 46px; }
 .button-header:hover { background: #ffffff10; border-color: #ffffffa0; }
 .menu-toggle { display: none; }
+.theme-toggle { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; flex-shrink: 0; background: transparent; border: 1px solid #ffffff48; border-radius: 50%; color: #d8e2e8; cursor: pointer; transition: background .18s, border-color .18s, color .18s; }
+.theme-toggle:hover { color: var(--white); background: #ffffff10; border-color: #ffffffa0; }
+.theme-toggle svg { width: 18px; height: 18px; }
+[data-theme="dark"] .theme-toggle .lucide-moon, [data-theme="dark"] .theme-toggle [data-lucide="moon"], [data-theme="light"] .theme-toggle .lucide-sun, [data-theme="light"] .theme-toggle [data-lucide="sun"] { display: none; }
+.header-actions { display: flex; align-items: center; gap: 12px; }
+.theme-changing, .theme-changing *, .theme-changing *::before, .theme-changing *::after { transition: none !important; }
 .hero { background: var(--mist); }
 .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 76px; align-items: center; padding-block: 60px; }
 .location { display: flex; align-items: center; gap: 12px; color: var(--blue); font-size: .85rem; font-weight: 500; margin-bottom: 28px; }
@@ -208,6 +240,14 @@ h1 { font-size: clamp(3.75rem, 6.6vw, 5.6rem); line-height: .99; letter-spacing:
   .container { width: calc(100% - 48px); }
   .section { padding-block: 64px; }
   .nav-bar { min-height: 76px; flex-wrap: wrap; gap: 0; }
+  .theme-toggle { margin-left: auto; margin-right: 10px; }
+  .header-actions { gap: 10px; }
+  .header-actions .theme-toggle { margin: 0; }
+  .header-actions .button-header { min-height: 44px; padding: 10px 16px; }
+  .back-label-rest { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .has-menu .theme-toggle { order: 1; }
+  .has-menu .menu-toggle { order: 2; }
+  .has-menu .primary-menu { order: 3; }
   .brand img { width: 175px; }
   .primary-menu { width: 100%; flex-wrap: wrap; gap: 6px 24px; padding-block: 14px 22px; border-top: 1px solid #ffffff25; }
   .primary-menu > a { padding-block: 12px; font-size: .92rem; }
@@ -395,3 +435,31 @@ h1 { font-size: clamp(3.75rem, 6.6vw, 5.6rem); line-height: .99; letter-spacing:
   .assistant.is-open:not([data-phase="idle"]) { top: 12px; }
   .assistant-panel { width: 100%; flex: 1; max-height: none; border-radius: 8px 8px 22px 8px; }
 }
+
+/* Dark theme rule overrides: only declarations that differ from the light theme above. */
+[data-theme="dark"] body { background: var(--canvas); }
+[data-theme="dark"] ::selection { background: var(--action); color: var(--navy-deep); }
+[data-theme="dark"] :focus-visible { outline-color: var(--action); }
+[data-theme="dark"] .site-header :focus-visible, [data-theme="dark"] .site-footer :focus-visible { outline-color: #e0c492; }
+[data-theme="dark"] .button-primary { color: var(--navy-deep); background: var(--action); }
+[data-theme="dark"] .button-primary:hover { background: var(--action-hover); }
+[data-theme="dark"] .text-link, [data-theme="dark"] .contact-methods > a, [data-theme="dark"] .advisor-details strong { color: var(--ink); }
+[data-theme="dark"] .credentials { border-top-color: var(--line); }
+[data-theme="dark"] .credentials > div { border-right-color: var(--line); }
+[data-theme="dark"] .advisor-details li, [data-theme="dark"] .process-list li { border-top-color: var(--line); }
+[data-theme="dark"] .contact-icon { border-color: var(--line); }
+@media (max-width: 760px) { [data-theme="dark"] .credentials > div:nth-child(even) { border-left-color: var(--line); } }
+[data-theme="dark"] .lender-list { color: var(--muted); }
+[data-theme="dark"] .process-section { background: var(--mist); }
+[data-theme="dark"] .step-number { color: var(--brass); }
+[data-theme="dark"] .results-panel, [data-theme="dark"] .advisor-details, [data-theme="dark"] .policy-callout { background: var(--surface-raised); }
+[data-theme="dark"] .consultation-form { background: var(--surface-raised); box-shadow: 0 12px 32px #00000014; }
+[data-theme="dark"] .consultation-form input:not([type="checkbox"]), [data-theme="dark"] .consultation-form textarea { border-color: #718795; background: var(--canvas); color: var(--ink); }
+[data-theme="dark"] .consultation-form input:focus, [data-theme="dark"] .consultation-form textarea:focus { border-color: var(--blue); }
+[data-theme="dark"] .consultation-form input::placeholder, [data-theme="dark"] .consultation-form textarea::placeholder { color: #a6b7c3; }
+[data-theme="dark"] .consent-label input { accent-color: var(--action); }
+[data-theme="dark"] .form-submit:disabled { background: #bca776; color: var(--navy-deep); }
+[data-theme="dark"] .form-submit.sent:disabled { background: #233f33; color: #c1e5cc; }
+[data-theme="dark"] .form-status.is-success { color: #c1e5cc; }
+[data-theme="dark"] .form-status.is-error { color: #ffb8ac; }
+[data-theme="dark"] .policy-page { background: var(--canvas); }

@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#132c3f">
+  <meta name="theme-color" content="#101d27">
+  <script>
+    // Applies a saved theme before first paint; dark is the default in the markup.
+    try { const t = localStorage.getItem('fb-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
   <title>Farzad Behzadi · Mortgage Consultant · BC &amp; Alberta</title>
   <meta name="description" content="Farzad Behzadi helps buyers and refinancers across BC &amp; Alberta get approved based on their real needs, comparing 50+ lenders. Bilingual in English and Persian.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +28,7 @@
         <a href="#services">Services</a><a href="#process">The process</a><a href="#results">Results</a><a href="#about">About Farzad</a>
         <a href="#contact" class="button button-header">Book a consultation <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
       </nav>
+      <button type="button" class="theme-toggle" data-theme-toggle hidden aria-label="Switch to light theme" title="Switch to light theme"><i data-lucide="sun" aria-hidden="true"></i><i data-lucide="moon" aria-hidden="true"></i></button>
     </div>
   </header>
 
