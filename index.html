@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="site.css">
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
   <script src="site.js" defer></script>
+  <script src="assistant.js" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -138,7 +139,32 @@
   </main>
 
   <footer class="site-footer"><div class="container"><div class="footer-main"><div class="footer-brand"><a class="brand" href="#top"><img src="project/assets/logo-horizontal-white.png" alt="Farzad Behzadi home" width="2106" height="566" loading="lazy"></a><p>Personal mortgage advice.<br>For wherever life takes you.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="#services">Services</a><a href="#process">The process</a><a href="#about">About Farzad</a><a href="/privacy.html">Privacy Policy</a></nav><div class="footer-contact"><a href="tel:+16043635353">(604) 363-5353</a><a href="mailto:farzad@behzadilending.ca">farzad@behzadilending.ca</a><span>Serving British Columbia &amp; Alberta</span></div></div><div class="footer-bottom"><span>© 2026 Farzad Behzadi Personal Mortgage Corporation</span><span>Registered under RTC Mortgage Brokerage</span></div></div></footer>
-  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
-  <elevenlabs-convai agent-id="agent_3801kw5nbj8te98r33m4p8qepdnb"></elevenlabs-convai>
+  <div class="assistant" data-assistant hidden>
+    <section id="assistant-panel" class="assistant-panel" role="dialog" aria-labelledby="assistant-title" data-assistant-panel hidden>
+      <header class="assistant-header">
+        <img class="assistant-mark" src="project/assets/logo-icon-128.webp" alt="" width="40" height="40">
+        <div class="assistant-heading"><h2 id="assistant-title">Farzad’s assistant</h2><p class="assistant-status" data-assistant-status aria-live="polite">Answers in English or Persian</p></div>
+        <button type="button" class="assistant-end" data-assistant-end hidden>End</button>
+        <button type="button" class="assistant-icon-button" data-assistant-close aria-label="Close assistant"><i data-lucide="x" aria-hidden="true"></i></button>
+      </header>
+      <div class="assistant-body">
+        <div class="assistant-start" data-assistant-start>
+          <p class="assistant-lead">Questions about pre-approval, renewals or getting started? Talk it through by voice or send a message.</p>
+          <fieldset class="assistant-language"><legend>Conversation language</legend><div class="assistant-language-options"><label><input type="radio" name="assistant-language" value="en" checked><span>English</span></label><label><input type="radio" name="assistant-language" value="fa"><span lang="fa" dir="rtl">فارسی</span></label></div></fieldset>
+          <div class="assistant-actions"><button type="button" class="button button-primary" data-assistant-start-mode="voice"><i data-lucide="phone" aria-hidden="true"></i> Start a voice call</button><button type="button" class="button assistant-secondary" data-assistant-start-mode="text"><i data-lucide="message-square" aria-hidden="true"></i> Send a message</button></div>
+          <p class="assistant-notice" data-assistant-notice role="alert" hidden></p>
+        </div>
+        <div class="assistant-conversation" data-assistant-conversation hidden>
+          <div class="assistant-voice" data-assistant-voice hidden><span class="assistant-orb" data-assistant-orb aria-hidden="true"></span><button type="button" class="assistant-icon-button assistant-mute" data-assistant-mute aria-pressed="false" aria-label="Mute microphone"><i data-lucide="mic" aria-hidden="true"></i><i data-lucide="mic-off" aria-hidden="true"></i></button></div>
+          <div class="assistant-log" data-assistant-log role="log" aria-live="polite" aria-label="Conversation" tabindex="0"></div>
+          <p class="assistant-typing" data-assistant-typing hidden><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span class="visually-hidden">The assistant is typing</span></p>
+          <div class="assistant-ended" data-assistant-ended hidden><p data-assistant-ended-text>Conversation ended.</p><button type="button" class="text-link" data-assistant-restart>Start a new conversation <i data-lucide="arrow-right" aria-hidden="true"></i></button></div>
+          <form class="assistant-composer" data-assistant-composer><label class="visually-hidden" for="assistant-input">Message</label><input id="assistant-input" data-assistant-input type="text" dir="auto" autocomplete="off" maxlength="1000" placeholder="Type your message…"><button type="submit" class="assistant-send" data-assistant-send aria-label="Send message"><i data-lucide="send" aria-hidden="true"></i></button></form>
+        </div>
+      </div>
+      <p class="assistant-disclosure">An automated assistant for Farzad Behzadi, RTC Mortgage Brokerage. It can’t give mortgage advice, and conversations may be recorded. <a href="/privacy.html">Privacy Policy</a></p>
+    </section>
+    <button type="button" class="assistant-launcher" data-assistant-launcher aria-expanded="false" aria-controls="assistant-panel"><span class="assistant-launcher-dot" aria-hidden="true"></span><i data-lucide="message-circle" aria-hidden="true"></i><span data-assistant-launcher-label>Ask a question</span></button>
+  </div>
 </body>
 </html>

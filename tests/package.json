@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "test": "node testimonials.cjs"
+    "test": "node testimonials.cjs && node assistant.cjs"
   },
   "devDependencies": {
     "axe-core": "4.14.0",
