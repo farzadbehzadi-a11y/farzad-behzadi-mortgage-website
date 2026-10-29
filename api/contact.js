@@ -11,9 +11,16 @@ module.exports = async function handler(req, res) {
   const email = (body.email || '').toString().trim();
   const phone = (body.phone || '').toString().trim();
   const message = (body.message || '').toString().trim();
+  const consent = body.consent === true || body.consent === 'yes';
+  const consentText = (body.consentText || '').toString().trim();
+  const consentAt = (body.consentAt || '').toString().trim();
 
   if (!fullName || !email) {
     return res.status(400).json({ error: 'Full name and email are required.' });
+  }
+
+  if (!consent) {
+    return res.status(400).json({ error: 'Consent to be contacted is required.' });
   }
 
   const webhookUrl = process.env.BOOKING_WEBHOOK_URL || PRODUCTION_WEBHOOK_URL;
@@ -22,7 +29,7 @@ module.exports = async function handler(req, res) {
     const webhookResponse = await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fullName, email, phone, message })
+      body: JSON.stringify({ fullName, email, phone, message, consent, consentText, consentAt })
     });
 
     if (!webhookResponse.ok) {
