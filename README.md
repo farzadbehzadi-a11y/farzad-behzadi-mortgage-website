@@ -20,3 +20,14 @@ The design medium is **HTML/CSS/JS** — these are prototypes, not production co
 
 - `farzad-behzadi-mortgage-website/README.md` — this file
 - `farzad-behzadi-mortgage-website/project/` — the `Farzad Behzadi Mortgage Website` project files (HTML prototypes, assets, components)
+
+
+## Client reviews carousel
+
+`reviews.json` is the shared content source for the manual testimonial carousel. Add only approved quotes and accurate author attribution. Each item accepts `author`, `quote`, and optional `rating` (integer 1–5), `source` (`Google` for actual Google reviews), and `url` (HTTPS link to the original review). `googleReviewsUrl` optionally links to the business's Google review page. This is curated content; it does not automatically sync with Google.
+
+The initial content contains five short excerpts from the Google listing supplied by the client, verified on 26 October 2026. Each quote links to its individual original review. `excerpt: true` labels shortened reviews. Review counts and aggregate ratings are not cached or displayed. When no reviews are configured, clearly labeled design placeholders appear on localhost only. The section stays hidden elsewhere, including if the content request fails. No ratings or reviewer names are fabricated. The carousel supports touch scrolling, previous/next buttons, arrow keys, Home/End, and reduced motion. It does not auto-rotate.
+
+### Carousel browser checks
+
+Start the static site locally, then run `npm install --prefix tests` and `npx --prefix tests playwright install chromium`. Run `npm test --prefix tests` for the light site, or `SITE_URL=http://127.0.0.1:8767 npm test --prefix tests` for the dark site. `BROWSER_EXECUTABLE` can select an existing Chrome executable. Tests use fixture reviews and never submit enquiries or contact the review service.

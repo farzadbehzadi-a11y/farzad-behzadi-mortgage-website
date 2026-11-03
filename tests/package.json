@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "node testimonials.cjs && node assistant.cjs && node theme.cjs"
+  },
+  "devDependencies": {
+    "axe-core": "4.14.0",
+    "playwright": "1.62.1"
+  }
+}
