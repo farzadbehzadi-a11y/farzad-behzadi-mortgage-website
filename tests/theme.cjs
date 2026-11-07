@@ -4,6 +4,9 @@ const root = process.env.SITE_URL || 'http://127.0.0.1:8765';
 const launch = {headless:true,...(process.env.BROWSER_EXECUTABLE ? {executablePath:process.env.BROWSER_EXECUTABLE} : {})};
 const theme = page => page.evaluate(()=>document.documentElement.dataset.theme);
 async function scan(page){
+ // Entrance effects fade content in; check contrast on the settled page, not mid-fade.
+ await page.evaluate(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('is-visible')));
+ await page.waitForTimeout(1300);
  await page.addScriptTag({path:require.resolve(process.env.AXE_MODULE || 'axe-core/axe.min.js')});
  return page.evaluate(async()=>(await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target.join(' '))})));
 }
@@ -21,15 +24,15 @@ async function scan(page){
   await page.route('https://unpkg.com/@elevenlabs/**',r=>r.abort());
   await page.goto(root,{waitUntil:'networkidle'});
   assert.equal(await theme(page),'dark','Dark by default');
-  assert.equal(await page.locator('meta[name="theme-color"]').getAttribute('content'),'#101d27');
+  assert.equal(await page.locator('meta[name="theme-color"]').getAttribute('content'),'#08182a');
   const darkScan = await scan(page);
   assert.equal(darkScan.length,0,JSON.stringify(darkScan));
 
   const toggle = page.getByRole('button',{name:'Switch to light theme'});
   await toggle.click();
   assert.equal(await theme(page),'light');
-  assert.equal(await page.locator('meta[name="theme-color"]').getAttribute('content'),'#132c3f');
-  assert.equal(await page.locator('.hero .button-primary').evaluate(b=>getComputedStyle(b).backgroundColor),'rgb(19, 44, 63)','Colours change at once, without a lagging fade');
+  assert.equal(await page.locator('meta[name="theme-color"]').getAttribute('content'),'#003364');
+  assert.equal(await page.locator('.hero .button-primary').evaluate(b=>getComputedStyle(b).backgroundColor),'rgb(0, 51, 100)','Colours change at once, without a lagging fade');
   assert.equal(await page.getByRole('button',{name:'Switch to dark theme'}).count(),1,'Label describes the next action');
   const lightScan = await scan(page);
   assert.equal(lightScan.length,0,JSON.stringify(lightScan));

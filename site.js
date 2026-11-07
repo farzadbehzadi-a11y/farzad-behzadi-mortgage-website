@@ -41,7 +41,7 @@
     html.dataset.theme = theme;
     void html.offsetHeight;
     html.classList.remove('theme-changing');
-    if (themeColor) themeColor.content = theme === 'dark' ? '#101d27' : '#132c3f';
+    if (themeColor) themeColor.content = theme === 'dark' ? '#08182a' : '#003364';
     const label = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
     themeToggle.setAttribute('aria-label', label);
     themeToggle.title = label;
@@ -58,7 +58,9 @@
 
   if (window.lucide) window.lucide.createIcons();
 
-  // A manual, scroll-snap carousel: no timed rotation or cloned reviews.
+  // A review strip that glides continuously, looping through one hidden copy of the cards. It pauses
+  // for keyboard focus, touch, drag or the arrows, when off-screen or in a background tab, and when
+  // the visitor presses pause. Reduced-motion visitors get a still, scroll-snap carousel instead.
   async function initReviews() {
     const section = document.getElementById('testimonials');
     if (!section) return;
@@ -67,6 +69,7 @@
     const previous = section.querySelector('[data-reviews-prev]');
     const next = section.querySelector('[data-reviews-next]');
     const position = section.querySelector('[data-reviews-position]');
+    const autoplayButton = section.querySelector('[data-reviews-autoplay]');
     const controls = section.querySelector('[data-reviews-controls]');
     const isLocal = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
 
@@ -127,6 +130,22 @@
     section.hidden = false;
     const cards = Array.from(track.children);
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const marquee = !reduced.matches && cards.length > 1;
+    if (marquee) {
+      // One decorative copy of every card, so the strip can loop without a visible jump.
+      cards.forEach(card => {
+        const copy = card.cloneNode(true);
+        copy.classList.add('is-clone');
+        copy.setAttribute('aria-hidden', 'true');
+        copy.removeAttribute('aria-label');
+        copy.inert = true;
+        copy.querySelectorAll('a, button').forEach(element => element.setAttribute('tabindex', '-1'));
+        track.appendChild(copy);
+      });
+      track.classList.add('is-marquee');
+    }
+    const allCards = Array.from(track.children);
+    const loopWidth = () => (marquee ? allCards[cards.length].offsetLeft - cards[0].offsetLeft : 0);
 
     function update() {
       const max = track.scrollWidth - track.clientWidth;
@@ -134,7 +153,7 @@
       next.disabled = track.scrollLeft >= max - 2;
       controls.hidden = max <= 2;
       const bounds = track.getBoundingClientRect();
-      const visible = cards.map((card, index) => ({ card, index })).filter(({ card }) => {
+      const visible = allCards.map((card, index) => ({ card, index: index % cards.length })).filter(({ card }) => {
         const rect = card.getBoundingClientRect();
         return rect.right > bounds.left + 12 && rect.left < bounds.right - 12;
       });
@@ -163,9 +182,99 @@
     track.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update, { passive: true });
     update();
+
+    const SPEED_PX_PER_SECOND = 36;
+    const RESUME_AFTER_MS = 5000;
+    let frame = 0;
+    let lastTime = 0;
+    let offset = 0;
+    let gliding = false;
+    let stoppedByVisitor = false;
+    let focused = false;
+    let onScreen = false;
+    let interactedAt = 0;
+    function canGlide() {
+      return marquee && !reduced.matches && !stoppedByVisitor && !focused && onScreen
+        && !document.hidden && !controls.hidden && Date.now() - interactedAt >= RESUME_AFTER_MS;
+    }
+    function step(time) {
+      frame = window.requestAnimationFrame(step);
+      const active = canGlide();
+      if (active && !gliding) { offset = track.scrollLeft; lastTime = time; }
+      if (active !== gliding) {
+        gliding = active;
+        // The moving counter would flood screen readers, so it only announces while still.
+        position.setAttribute('aria-live', active ? 'off' : 'polite');
+      }
+      if (!active) return;
+      offset += Math.min(time - lastTime, 64) * SPEED_PX_PER_SECOND / 1000;
+      lastTime = time;
+      const loop = loopWidth();
+      if (loop > 0 && offset >= loop) offset -= loop;
+      track.scrollLeft = offset;
+    }
+    function syncAutoplay() {
+      if (autoplayButton) {
+        autoplayButton.hidden = !marquee || reduced.matches || controls.hidden;
+        const label = stoppedByVisitor ? 'Play automatic scrolling' : 'Pause automatic scrolling';
+        autoplayButton.setAttribute('aria-label', label);
+        autoplayButton.title = label;
+        autoplayButton.dataset.state = stoppedByVisitor ? 'paused' : 'playing';
+      }
+      if (!frame && marquee && !reduced.matches) frame = window.requestAnimationFrame(step);
+      if (frame && reduced.matches) { window.cancelAnimationFrame(frame); frame = 0; }
+    }
+    if (autoplayButton) autoplayButton.addEventListener('click', () => {
+      stoppedByVisitor = !stoppedByVisitor;
+      interactedAt = 0;
+      syncAutoplay();
+    });
+    // Hovering doesn't pause it: the cursor often rests over this full-width strip while the page is
+    // read. Keyboard focus, a swipe or drag, a sideways scroll or the arrows pause it for a moment.
+    section.addEventListener('focusin', event => {
+      focused = event.target !== autoplayButton && event.target.matches(':focus-visible');
+    });
+    section.addEventListener('focusout', event => { if (!section.contains(event.relatedTarget)) focused = false; });
+    ['pointerdown', 'touchstart'].forEach(type => track.addEventListener(type, () => { interactedAt = Date.now(); }, { passive: true }));
+    track.addEventListener('wheel', event => {
+      if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) interactedAt = Date.now();
+    }, { passive: true });
+    [previous, next].forEach(button => button.addEventListener('click', () => { interactedAt = Date.now(); }));
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => { onScreen = entries.some(entry => entry.isIntersecting); }, { threshold: 0.2 }).observe(track);
+    } else onScreen = true;
+    reduced.addEventListener('change', syncAutoplay);
+    window.addEventListener('resize', syncAutoplay, { passive: true });
+    syncAutoplay();
   }
 
   initReviews();
+
+  // Subtle entrance motion. Content stays visible without JavaScript or with reduced motion.
+  function initMotion() {
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const groups = ['.credentials', '.lender-content', '.section-heading', '.services-grid', '.process-list', '.results-grid',
+      '.testimonials-track', '.about-copy', '.advisor-details', '.contact-copy', '.consultation-form'];
+    const targets = [];
+    groups.forEach(selector => document.querySelectorAll(selector).forEach(group => {
+      const staggered = group.matches('.credentials, .services-grid, .process-list, .results-grid');
+      const items = staggered ? Array.from(group.children) : [group];
+      items.forEach((item, index) => {
+        item.classList.add('reveal');
+        item.style.setProperty('--reveal-delay', `${Math.min(index, 4) * 90}ms`);
+        targets.push(item);
+      });
+    }));
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    }), { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    targets.forEach(target => observer.observe(target));
+    document.documentElement.classList.add('motion');
+  }
+
+  initMotion();
 
   // Contact form
   function initContact() {
