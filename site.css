@@ -4,20 +4,21 @@
   --review-stars: #916611;
   --assistant-surface: #fff;
   --assistant-raised: #edf2f4;
-  --assistant-header: #132c3f;
-  --assistant-action: #132c3f;
-  --assistant-action-hover: #245b7b;
+  --assistant-header: #003364;
+  --assistant-action: #003364;
+  --assistant-action-hover: #1d5d94;
   --assistant-action-ink: #fff;
   --assistant-accent: #b49863;
 
-  --navy: #132c3f;
-  --navy-deep: #0d2232;
-  --ink: #1d3545;
-  --muted: #526575;
-  --blue: #245b7b;
+  /* Navy #003364 is the brand colour (Farzad Behzadi brand guideline, BRIXWORK). */
+  --navy: #003364;
+  --navy-deep: #002346;
+  --ink: #15304a;
+  --muted: #4f6377;
+  --blue: #1d5d94;
   --brass: #b49863;
-  --mist: #edf2f4;
-  --line: #d6dfe4;
+  --mist: #edf2f7;
+  --line: #d4dee8;
   --white: #fff;
   --body: 'Hanken Grotesk', system-ui, sans-serif;
   --display: 'Cormorant Garamond', Georgia, serif;
@@ -25,18 +26,18 @@
 /* Dark theme (default). <html data-theme="dark"> is set in the markup; the toggle switches to light. */
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --canvas: #101d27;
-  --surface-raised: #1b303e;
+  --canvas: #08182a;
+  --surface-raised: #12283f;
   --action: #dfc590;
   --action-hover: #ecd7ad;
-  --navy: #101d27;
-  --navy-deep: #0b1720;
-  --ink: #edf3f6;
-  --muted: #b2c1cc;
-  --blue: #a7c9df;
+  --navy: #08182a;
+  --navy-deep: #04101e;
+  --ink: #edf3f8;
+  --muted: #b0c0d0;
+  --blue: #a7c8e8;
   --brass: #c6aa74;
-  --mist: #142632;
-  --line: #354957;
+  --mist: #0d2035;
+  --line: #2f4862;
   --review-surface: var(--surface-raised);
   --review-avatar: var(--canvas);
   --review-stars: #dfc590;
@@ -107,7 +108,7 @@ h1 { font-size: clamp(3.75rem, 6.6vw, 5.6rem); line-height: .99; letter-spacing:
 .hero-note svg { width: 16px; height: 16px; }
 .hero-portrait { position: relative; align-self: stretch; min-height: 510px; max-height: 565px; overflow: hidden; border-radius: 5px 5px 44px 5px; background: #40545c; }
 .hero-portrait > img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
-.hero-portrait::after { content: ''; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, #0d2232e8); pointer-events: none; }
+.hero-portrait::after { content: ''; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, #002346e8); pointer-events: none; }
 .hero-portrait figcaption { position: absolute; z-index: 1; bottom: 28px; inset-inline: 28px; display: flex; justify-content: space-between; align-items: center; color: var(--white); }
 .hero-portrait figcaption strong { display: block; font-size: 1.3rem; font-weight: 500; }
 .hero-portrait figcaption span span { display: block; color: #e1e6e8; font-size: .82rem; margin-top: 3px; }
@@ -175,7 +176,7 @@ h1 { font-size: clamp(3.75rem, 6.6vw, 5.6rem); line-height: .99; letter-spacing:
 .contact-methods strong { font-size: 1rem; font-weight: 500; overflow-wrap: anywhere; }
 .contact-note { display: flex; gap: 8px; align-items: center; margin-top: 36px; font-size: .77rem; color: var(--muted); }
 .contact-note svg { width: 16px; height: 16px; }
-.consultation-form { padding: 36px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); box-shadow: 0 12px 32px #132c3f06; }
+.consultation-form { padding: 36px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); box-shadow: 0 12px 32px #00336408; }
 .consultation-form h3 { font-size: 1.25rem; }
 .form-intro { color: var(--muted); font-size: .88rem; margin-block: 7px 24px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -312,6 +313,19 @@ h1 { font-size: clamp(3.75rem, 6.6vw, 5.6rem); line-height: .99; letter-spacing:
   .footer-brand { grid-column: auto; }
   .hero-portrait figcaption { inset-inline: 20px; }
 }
+/* Entrance motion: classes are added by site.js only when motion is allowed. */
+.motion .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms), transform .8s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
+.motion .reveal.is-visible { opacity: 1; transform: none; }
+.motion .hero-copy > * { animation: rise-in .9s cubic-bezier(.2, .7, .2, 1) both; }
+.motion .hero-copy > :nth-child(2) { animation-delay: .08s; }
+.motion .hero-copy > :nth-child(3) { animation-delay: .16s; }
+.motion .hero-copy > :nth-child(4) { animation-delay: .24s; }
+.motion .hero-copy > :nth-child(5) { animation-delay: .32s; }
+.motion .hero-copy > :nth-child(n+6) { animation-delay: .4s; }
+.motion .hero-portrait > img { animation: settle 1.6s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes settle { from { transform: scale(1.06); } to { transform: none; } }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -341,6 +355,10 @@ h1 { font-size: clamp(3.75rem, 6.6vw, 5.6rem); line-height: .99; letter-spacing:
 .review-arrow { display: grid; place-items: center; width: 46px; height: 46px; padding: 0; background: var(--review-surface); color: var(--ink); border: 1px solid var(--line); border-radius: 50%; cursor: pointer; }
 .review-arrow:hover:enabled { border-color: var(--blue); }
 .review-arrow:disabled { opacity: .38; cursor: default; }
+.review-autoplay svg { width: 18px; height: 18px; }
+.testimonials-track.is-marquee { scroll-snap-type: none; scrollbar-width: none; }
+.testimonials-track.is-marquee::-webkit-scrollbar { display: none; }
+.review-autoplay[data-state="playing"] svg:last-of-type, .review-autoplay[data-state="paused"] svg:first-of-type { display: none; }
 @media (min-width: 761px) and (max-width: 1100px) { .testimonial-card { flex-basis: calc((100% - 24px) / 2); } }
 @media (max-width: 760px) {
   .testimonial-card { flex-basis: 100%; padding: 26px; }
