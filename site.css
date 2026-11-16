@@ -529,6 +529,8 @@ h1 { font-size: clamp(3.75rem, 6.6vw, 5.6rem); line-height: .99; letter-spacing:
 .doc-link { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin-top: auto; padding-top: 18px; color: var(--blue); font-size: .86rem; font-weight: 600; text-decoration: none; }
 .doc-link:hover { text-decoration: underline; }
 .doc-link svg { width: 16px; height: 16px; }
+.doc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; margin-top: auto; padding-top: 18px; }
+.doc-actions .doc-link { margin-top: 0; padding-top: 0; }
 .doc-card-compact h3 { margin-bottom: 12px; }
 .library-empty { padding: 32px; border: 1px dashed #b8c7d0; border-radius: 5px; color: var(--muted); text-align: center; }
 .library-cta { display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-top: 80px; padding: 40px; background: var(--mist); border-left: 3px solid var(--brass); }
