@@ -24,12 +24,34 @@
         toggle.focus();
       }
     });
-    const mobile = window.matchMedia('(max-width: 760px)');
+    const mobile = window.matchMedia('(max-width: 1000px)');
     mobile.addEventListener('change', closeMenu);
     document.addEventListener('click', event => {
       if (!event.target.closest('.site-header')) closeMenu();
     });
   }
+
+  // Resources dropdown: click or keyboard to open; hover also opens it on desktop (CSS).
+  document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+    const button = dropdown.querySelector('.nav-dropdown-toggle');
+    if (!button) return;
+    const close = () => button.setAttribute('aria-expanded', 'false');
+    button.addEventListener('click', () => {
+      button.setAttribute('aria-expanded', String(button.getAttribute('aria-expanded') !== 'true'));
+    });
+    dropdown.addEventListener('focusout', event => {
+      if (!dropdown.contains(event.relatedTarget)) close();
+    });
+    document.addEventListener('click', event => {
+      if (!dropdown.contains(event.target)) close();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+        close();
+        button.focus();
+      }
+    });
+  });
 
   // Dark is the default; a visitor's choice is remembered on this device.
   const themeToggle = document.querySelector('[data-theme-toggle]');
